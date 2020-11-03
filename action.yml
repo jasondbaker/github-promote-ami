@@ -1,0 +1,37 @@
+name: "Promote AMI GitHub Action"
+description: "Promote AMIs from a release candidate status to production."
+author: "Exosite"
+inputs:
+  ami_name_pattern:
+    description: "A pattern which matches the AMI name"
+    required: true
+  pr_number:
+    description: "A GitHub PR number associated with the AMI build."
+    required: true
+  aws_region:
+    description: "The AWS region where the AMI is located."
+    required: true
+  aws_owner_account:
+    description: "The AWS account which owns the AMI."
+    required: true
+  aws_additional_accounts:
+    description: "A list of additional AWS accounts which need access to the AMI."
+  aws_access_key:
+    description: "An AWS access key credential."
+    required: true
+  aws_secret_key:
+    description: "An AWS secret access key credential."
+    required: true
+  aws_role_arn:
+    description: "An optional AWS role to use."
+
+
+outputs:
+  ami_id:
+    description: "The AMI ID which was modified."
+  ami_name:
+    description: "The AMI name which was modified."
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
